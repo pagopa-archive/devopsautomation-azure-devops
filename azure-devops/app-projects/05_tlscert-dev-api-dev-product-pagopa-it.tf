@@ -24,9 +24,9 @@ variable "tlscert-dev-api-dev-product-pagopa-it" {
 
 locals {
   tlscert-dev-api-dev-product-pagopa-it = {
-    tenant_id                           = module.secrets.values["TENANTID"].value
+    tenant_id                           = module.secret_azdos.values["TENANTID"].value
     subscription_name                   = var.dev_subscription_name
-    subscription_id                     = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+    subscription_id                     = module.secret_azdos.values["DEV-SUBSCRIPTION-ID"].value
     dns_zone_resource_group             = local.dev_vnet_rg
     credential_subcription              = var.dev_subscription_name
     credential_key_vault_name           = local.dev_key_vault_name

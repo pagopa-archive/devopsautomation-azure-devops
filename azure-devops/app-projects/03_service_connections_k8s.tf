@@ -3,12 +3,12 @@
 #   depends_on            = [azuredevops_project.project]
 #   project_id            = azuredevops_project.project.id
 #   service_endpoint_name = "${local.prefix}-aks-dev"
-#   apiserver_url         = module.secrets_dev.values["aks-apiserver-url"].value
+#   apiserver_url         = module.secret_azdos_dev.values["aks-apiserver-url"].value
 #   authorization_type    = "ServiceAccount"
 #   service_account {
 #     # base64 values
-#     token   = module.secrets_dev.values["aks-azure-devops-sa-token"].value
-#     ca_cert = module.secrets_dev.values["aks-azure-devops-sa-cacrt"].value
+#     token   = module.secret_azdos_dev.values["aks-azure-devops-sa-token"].value
+#     ca_cert = module.secret_azdos_dev.values["aks-azure-devops-sa-cacrt"].value
 #   }
 # }
 
@@ -17,12 +17,12 @@
 #   depends_on            = [azuredevops_project.project]
 #   project_id            = azuredevops_project.project.id
 #   service_endpoint_name = "${local.prefix}-aks-uat"
-#   apiserver_url         = module.secrets_uat.values["aks-apiserver-url"].value
+#   apiserver_url         = module.secret_azdos_uat.values["aks-apiserver-url"].value
 #   authorization_type    = "ServiceAccount"
 #   service_account {
 #     # base64 values
-#     token   = module.secrets_uat.values["aks-azure-devops-sa-token"].value
-#     ca_cert = module.secrets_uat.values["aks-azure-devops-sa-cacrt"].value
+#     token   = module.secret_azdos_uat.values["aks-azure-devops-sa-token"].value
+#     ca_cert = module.secret_azdos_uat.values["aks-azure-devops-sa-cacrt"].value
 #   }
 # }
 
@@ -31,11 +31,11 @@
 #   depends_on            = [azuredevops_project.project]
 #   project_id            = azuredevops_project.project.id
 #   service_endpoint_name = "${local.prefix}-aks-prod"
-#   apiserver_url         = module.secrets_prod.values["aks-apiserver-url"].value
+#   apiserver_url         = module.secret_azdos_prod.values["aks-apiserver-url"].value
 #   authorization_type    = "ServiceAccount"
 #   service_account {
 #     # base64 values
-#     token   = module.secrets_prod.values["aks-azure-devops-sa-token"].value
-#     ca_cert = module.secrets_prod.values["aks-azure-devops-sa-cacrt"].value
+#     token   = module.secret_azdos_prod.values["aks-azure-devops-sa-token"].value
+#     ca_cert = module.secret_azdos_prod.values["aks-azure-devops-sa-cacrt"].value
 #   }
 # }

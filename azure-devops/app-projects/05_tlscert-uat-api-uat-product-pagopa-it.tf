@@ -24,9 +24,9 @@ variable "tlscert-uat-api-uat-product-pagopa-it" {
 
 locals {
   tlscert-uat-api-uat-product-pagopa-it = {
-    tenant_id                           = module.secrets.values["TENANTID"].value
+    tenant_id                           = module.secret_azdos.values["TENANTID"].value
     subscription_name                   = var.uat_subscription_name
-    subscription_id                     = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
+    subscription_id                     = module.secret_azdos.values["UAT-SUBSCRIPTION-ID"].value
     dns_zone_resource_group             = local.uat_vnet_rg
     credential_subcription              = var.uat_subscription_name
     credential_key_vault_name           = local.uat_key_vault_name
