@@ -1,12 +1,12 @@
 terraform {
-  required_version = ">= 1.1.5"
+  required_version = ">= 1.1.9"
   required_providers {
     azuredevops = {
       source  = "microsoft/azuredevops"
-      version = ">= 0.2.0"
+      version = ">= 0.2.1"
     }
     azurerm = {
-      version = ">= 2.98.0"
+      version = ">= 3.5.0"
     }
   }
   backend "azurerm" {}
@@ -23,7 +23,7 @@ provider "azurerm" {
     }
   }
   alias           = "dev"
-  subscription_id = module.secret_azdos.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id = module.secret_azdo.values["DEV-SUBSCRIPTION-ID"].value
 }
 
 provider "azurerm" {
@@ -33,7 +33,7 @@ provider "azurerm" {
     }
   }
   alias           = "uat"
-  subscription_id = module.secret_azdos.values["UAT-SUBSCRIPTION-ID"].value
+  subscription_id = module.secret_azdo.values["UAT-SUBSCRIPTION-ID"].value
 }
 
 provider "azurerm" {
@@ -43,5 +43,5 @@ provider "azurerm" {
     }
   }
   alias           = "prod"
-  subscription_id = module.secret_azdos.values["PROD-SUBSCRIPTION-ID"].value
+  subscription_id = module.secret_azdo.values["PROD-SUBSCRIPTION-ID"].value
 }
