@@ -24,11 +24,11 @@ locals {
   github_org       = "pagopa"
 
   # 🔐 KV
-  dev_key_vault_name  = "${local.prefix}-d-azdo-weu-kv"
-  uat_key_vault_name  = "${local.prefix}-u-azdo-weu-kv"
-  prod_key_vault_name = "${local.prefix}-p-azdo-weu-kv"
+  dev_key_vault_name  = "${local.prefix}-p-azdo-neu-kv"
+  uat_key_vault_name  = "${local.prefix}-u-azdo-neu-kv"
+  prod_key_vault_name = "${local.prefix}-p-azdo-neu-kv"
 
-  dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
+  dev_key_vault_resource_group  = "${local.prefix}-p-sec-rg"
   uat_key_vault_resource_group  = "${local.prefix}-u-sec-rg"
   prod_key_vault_resource_group = "${local.prefix}-p-sec-rg"
 
