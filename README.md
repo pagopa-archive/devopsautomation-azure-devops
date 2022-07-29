@@ -43,7 +43,7 @@ Change the project prefix and the names of your subscriptions
 ### azure-devops/.env/(app | iac)_state.tfvars
 
 Change the information about the state, changed the `prefix` with the prefix of your project used into the infra project.
-(e.g. selc or dvopla)
+(e.g. selc or dvopau)
 
 ## terraform.sh
 
