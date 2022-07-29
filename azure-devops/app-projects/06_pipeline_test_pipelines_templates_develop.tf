@@ -1,17 +1,17 @@
 variable "test-pipelines-templates-develop" {
   default = {
     repository = {
-      organization    = "pagopa"
-      name            = "azure-pipeline-templates"
-      branch_name     = "refs/heads/main"
-      pipelines_path  = ".devops"
+      organization          = "pagopa"
+      name                  = "azure-pipeline-templates"
+      branch_name           = "refs/heads/main"
+      pipelines_path        = ".devops"
       pipeline_yml_filename = "test-pipelines.yaml"
     }
     pipeline = {
       enable_code_review = true
       enable_deploy      = true
-      name                = "test-pipelines-templates-develop"
-      path               = "\\azure-pipeline-templates\test-pipelines-templates-develop"
+      name               = "test-pipelines-templates-develop"
+      path               = "azure-pipeline-templates"
     }
   }
 }
@@ -46,15 +46,15 @@ locals {
 }
 
 module "test-pipelines-templates-develop_test" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=add-module-build-pipeline-generic"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=add-module-build-pipeline-generic"
   count  = var.test-pipelines-templates-develop.pipeline.enable_deploy == true ? 1 : 0
 
-  project_id                   = data.azuredevops_project.project.id
+  project_id                   = azuredevops_project.project.id
   repository                   = var.test-pipelines-templates-develop.repository
-  github_service_connection_id = local.service_endpoint_io_azure_devops_github_pr_id
-  
-  path                         = var.test-pipelines-templates-develop.pipeline.path
-  pipeline_name                 = var.test-pipelines-templates-develop.pipeline.name
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+
+  path                  = var.test-pipelines-templates-develop.pipeline.path
+  pipeline_name         = var.test-pipelines-templates-develop.pipeline.name
   pipeline_yml_filename = var.test-pipelines-templates-develop.repository.pipeline_yml_filename
 
   ci_trigger_use_yaml = true
@@ -70,10 +70,6 @@ module "test-pipelines-templates-develop_test" {
   )
 
   service_connection_ids_authorization = [
-    local.service_endpoint_io_azure_devops_github_pr_id,
-
-    local.service_endpoint_azure_dev_id,
-    local.service_endpoint_azure_devops_acr_aks_dev_id,
-    azuredevops_serviceendpoint_kubernetes.aks_dev.id
+    azuredevops_serviceendpoint_github.azure-devops-github-pr.id,
   ]
 }
