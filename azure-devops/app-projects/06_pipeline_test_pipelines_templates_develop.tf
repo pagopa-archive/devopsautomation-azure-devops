@@ -8,7 +8,6 @@ variable "test-pipelines-templates-develop" {
       pipeline_yml_filename = "test-development-pipelines.yaml"
     }
     pipeline = {
-      enable_code_review = true
       enable_deploy      = true
       name               = "test-pipelines-templates-for-development"
       path               = "azure-pipeline-templates"
@@ -55,7 +54,7 @@ module "test-pipelines-templates-develop_test" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.test-pipelines-templates-develop.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
 
   path                  = var.test-pipelines-templates-develop.pipeline.path
   pipeline_name         = var.test-pipelines-templates-develop.pipeline.name
@@ -75,5 +74,7 @@ module "test-pipelines-templates-develop_test" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-pr.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-rw.id,
+    azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
   ]
 }
