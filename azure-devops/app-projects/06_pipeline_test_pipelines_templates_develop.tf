@@ -3,14 +3,14 @@ variable "test-pipelines-templates-develop" {
     repository = {
       organization          = "pagopa"
       name                  = "azure-pipeline-templates"
-      branch_name           = "refs/heads/main"
+      branch_name           = "refs/heads/master"
       pipelines_path        = ".devops"
-      pipeline_yml_filename = "test-pipelines.yaml"
+      pipeline_yml_filename = "test-development-pipelines.yaml"
     }
     pipeline = {
       enable_code_review = true
       enable_deploy      = true
-      name               = "test-pipelines-templates-develop"
+      name               = "test-pipelines-templates-for-development"
       path               = "azure-pipeline-templates"
     }
   }
@@ -19,7 +19,11 @@ variable "test-pipelines-templates-develop" {
 locals {
   # global vars
   test-pipelines-templates-develop-variables = {
-    dockerfile = "Dockerfile"
+    dockerfile = "Dockerfile",
+    GITHUB_EMAIL = module.secret_azdo.values["azure-devops-github-EMAIL"].value
+    GITHUB_TOKEN = module.secret_azdo.values["azure-devops-github-rw-TOKEN"].value
+    GITHUB_USERNAME = module.secret_azdo.values["azure-devops-github-USERNAME"].value
+    NPM_CONNECTION = "npm-verdaccio"
   }
   # global secrets
   test-pipelines-templates-develop-variables_secret = {
