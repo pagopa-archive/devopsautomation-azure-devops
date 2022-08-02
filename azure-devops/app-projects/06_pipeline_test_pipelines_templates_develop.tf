@@ -54,13 +54,14 @@ module "test-pipelines-templates-develop_test" {
 
   project_id                   = azuredevops_project.project.id
   repository                   = var.test-pipelines-templates-develop.repository
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
   path                  = var.test-pipelines-templates-develop.pipeline.path
   pipeline_name         = var.test-pipelines-templates-develop.pipeline.name
   pipeline_yml_filename = var.test-pipelines-templates-develop.repository.pipeline_yml_filename
 
   ci_trigger_use_yaml = true
+  pull_request_trigger_use_yaml = true
 
   variables = merge(
     local.test-pipelines-templates-develop-variables,
